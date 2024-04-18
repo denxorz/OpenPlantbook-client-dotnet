@@ -1,6 +1,6 @@
 # PlantBook
 
-[![.Build status](https://github.com/slaxor505/OpenPlantbook-client/workflows/dotnet/badge.svg)](https://github.com/slaxor505/OpenPlantbook-client/actions) [![Coverage Status](https://coveralls.io/repos/github/denxorz/PlantBook/badge.svg?branch=master)](https://coveralls.io/github/denxorz/PlantBook?branch=master) [![NuGet](https://buildstats.info/nuget/PlantBook)](https://www.nuget.org/packages/PlantBook/) [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/slaxor505/OpenPlantbook-client/dotnet/blob/master/LICENSE)
+[![.Build status](https://github.com/denxorz/OpenPlantbook-client-dotnet/workflows/dotnet/badge.svg)](https://github.com/denxorz/OpenPlantbook-client-dotnet/actions) [![Coverage Status](https://coveralls.io/repos/github/denxorz/PlantBook/badge.svg?branch=master)](https://coveralls.io/github/denxorz/PlantBook?branch=master) [![NuGet](https://buildstats.info/nuget/PlantBook)](https://www.nuget.org/packages/PlantBook/) [![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/denxorz/OpenPlantbook-client-dotnet/blob/master/LICENSE)
 
 ## What does it do?
 This library adds support for the PlantBook API. See https://plantbook.io for more info.
