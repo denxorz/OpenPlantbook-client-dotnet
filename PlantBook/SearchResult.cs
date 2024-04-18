@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Denxorz.PlantBook;
+namespace PlantBook;
 
 public record SearchResult(int Count, string? Next, string? Previous, List<Plant> Results)
 {

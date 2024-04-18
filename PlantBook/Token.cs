@@ -1,4 +1,4 @@
-﻿namespace Denxorz.PlantBook;
+﻿namespace PlantBook;
 
 public record Token(string AccessToken, string TokenType, DateTime Expires)
 {

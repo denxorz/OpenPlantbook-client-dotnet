@@ -1,4 +1,4 @@
-﻿namespace Denxorz.PlantBook;
+﻿namespace PlantBook;
 
 public record Plant(
     string Pid,
@@ -17,5 +17,6 @@ public record Plant(
     int? MinSoilMoist,
     int? MaxSoilEc,
     int? MinSoilEc,
-    string? ImageUrl
+    string? ImageUrl,
+    bool? UserPlant
 );

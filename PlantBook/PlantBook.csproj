@@ -8,21 +8,29 @@
     <Description>This library adds support for plantbook.io</Description>
     <Company>Denxorz</Company>
     <Authors>Dennis Geldhof</Authors>
-    <Version>1.0.0</Version>    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/denxorz/PlantBook</PackageProjectUrl>
-    <Copyright>Copyright @ Dennis Geldhof 2023</Copyright>    <PackageIconUrl></PackageIconUrl>
-    <RepositoryUrl>https://github.com/denxorz/PlantBook</RepositoryUrl>
+    <Version>1.1.0</Version>    
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/denxorz/OpenPlantbook-client-dotnet</PackageProjectUrl>
+    <Copyright>Copyright @ Dennis Geldhof 2024</Copyright>    
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl>https://github.com/denxorz/OpenPlantbook-client-dotnet</RepositoryUrl>
     <PackageTags>PlantBook Plant Plants</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>Denxorz.PlantBook</PackageId>
-    <PackageIcon>icons8-potted-plant-48.png</PackageIcon>
+    <PackageId>PlantBook</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Title>PlantBook.io</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icons8-potted-plant-48.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\icons8-potted-plant-48.png">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

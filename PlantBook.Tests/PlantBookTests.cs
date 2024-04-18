@@ -1,4 +1,4 @@
-namespace Denxorz.PlantBook.Tests;
+namespace PlantBook.Tests;
 
 public class PlantBookTests
 {
@@ -55,7 +55,7 @@ public class PlantBookTests
         using var httpTest = new HttpTest();
         httpTest
             .ForCallsTo("*token/")
-            .RespondWithJson(new {  });
+            .RespondWithJson(new { });
 
         httpTest
             .ForCallsTo("https://open.plantbook.io/api/v1/plant/detail/testPlant/")

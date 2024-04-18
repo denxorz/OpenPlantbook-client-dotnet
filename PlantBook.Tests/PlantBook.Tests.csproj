@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Denxorz.PlantBook\Denxorz.PlantBook.csproj" />
+    <ProjectReference Include="..\PlantBook\PlantBook.csproj" />
   </ItemGroup>
 
 </Project>
