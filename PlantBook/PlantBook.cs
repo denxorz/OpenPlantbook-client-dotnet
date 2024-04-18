@@ -3,9 +3,10 @@ using Flurl.Http;
 using Flurl.Http.Configuration;
 using Newtonsoft.Json.Serialization;
 
-namespace Denxorz.PlantBook;
+namespace PlantBook;
 
-public class PlantBook
+/// <inheritdoc />
+public class PlantBook : IPlantBook
 {
     private const string url = "https://open.plantbook.io/api/v1";
 
@@ -30,15 +31,16 @@ public class PlantBook
         this.credentials = credentials;
     }
 
-    private async Task RefreshTokenIfNeededAsync()
+    private async Task<Token> RefreshTokenIfNeededAsync(CancellationToken cancellationToken = default)
     {
         if (token is null || token.IsExpired)
         {
-            token = await GetTokenAsync();
+            token = await GetTokenAsync(cancellationToken);
         }
+        return token;
     }
 
-    private async Task<Token> GetTokenAsync()
+    private async Task<Token> GetTokenAsync(CancellationToken cancellationToken = default)
     {
         return await url
             .AppendPathSegment("token/")
@@ -47,30 +49,58 @@ public class PlantBook
                 grant_type = "client_credentials",
                 client_id = credentials.ClientId,
                 client_secret = credentials.Secret,
-            })
+            }, 
+            cancellationToken)
             .ReceiveJson<Token>();
     }
 
-    public async Task<SearchResult> SearchAsync(string searchFor, int? offset = null, int? limit = null)
+    /// <inheritdoc />
+    public async Task<SearchResult> SearchAsync(string alias, int? offset = null, int? limit = null, bool? userplant = null, CancellationToken cancellationToken = default)
     {
-        await RefreshTokenIfNeededAsync();
-
         return await url
             .AppendPathSegments("plant", "search")
-            .SetQueryParams(new { limit, offset, alias = searchFor })
-            .WithOAuthBearerToken(token!.AccessToken)
-            .GetAsync()
+            .SetQueryParams(new { limit, offset, alias, userplant })
+            .WithOAuthBearerToken((await RefreshTokenIfNeededAsync(cancellationToken)).AccessToken)
+            .GetAsync(cancellationToken)
             .ReceiveJson<SearchResult>();
     }
 
-    public async Task<Plant> GetDetailsAsync(string pid)
+    /// <inheritdoc />
+    public async Task<Plant> GetDetailsAsync(string pid, CancellationToken cancellationToken = default)
     {
-        await RefreshTokenIfNeededAsync();
-
         return await url
             .AppendPathSegments("plant", "detail", pid, "/")
-            .WithOAuthBearerToken(token!.AccessToken)
-            .GetAsync()
+            .WithOAuthBearerToken((await RefreshTokenIfNeededAsync(cancellationToken)).AccessToken)
+            .GetAsync(cancellationToken)
+            .ReceiveJson<Plant>();
+    }
+
+    /// <inheritdoc />
+    public async Task<Plant> CreateAsync(Plant plant, CancellationToken cancellationToken = default)
+    {
+        return await url
+            .AppendPathSegments("plant", "create")
+            .WithOAuthBearerToken((await RefreshTokenIfNeededAsync(cancellationToken)).AccessToken)
+            .PostJsonAsync(plant, cancellationToken)
+            .ReceiveJson<Plant>();
+    }
+
+    /// <inheritdoc />
+    public async Task DeleteAsync(string pid, CancellationToken cancellationToken = default)
+    {
+        await url
+            .AppendPathSegments("plant", "delete")
+            .WithOAuthBearerToken((await RefreshTokenIfNeededAsync(cancellationToken)).AccessToken)
+            .SendJsonAsync(HttpMethod.Delete, new { pid }, cancellationToken);
+    }
+
+    /// <inheritdoc />
+    public async Task<Plant> UpdateAsync(Plant plant, CancellationToken cancellationToken = default)
+    {
+        return await url
+            .AppendPathSegments("plant", "update")
+            .WithOAuthBearerToken((await RefreshTokenIfNeededAsync(cancellationToken)).AccessToken)
+            .PatchJsonAsync(plant, cancellationToken)
             .ReceiveJson<Plant>();
     }
 }
