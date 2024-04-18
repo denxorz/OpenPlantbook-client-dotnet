@@ -6,11 +6,9 @@ using Newtonsoft.Json.Serialization;
 namespace PlantBook;
 
 /// <inheritdoc />
-public class PlantBook : IPlantBook
+public class PlantBook(OAuth2ClientCredentials credentials) : IPlantBook
 {
     private const string url = "https://open.plantbook.io/api/v1";
-
-    private readonly OAuth2ClientCredentials credentials;
     private Token? token;
 
     static PlantBook()
@@ -24,11 +22,6 @@ public class PlantBook : IPlantBook
                 ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Replace,
             });
         });
-    }
-
-    public PlantBook(OAuth2ClientCredentials credentials)
-    {
-        this.credentials = credentials;
     }
 
     private async Task<Token> RefreshTokenIfNeededAsync(CancellationToken cancellationToken = default)
