@@ -13,7 +13,7 @@ You will need to create a account on https://open.plantbook.io and generate a `C
 Searching for plants:
 
 ```C#
-var plantbook = new PlantBook(new("auth cliend id", "auth secret"));
+var plantbook = new PlantBook(new("auth client id", "auth secret"));
 var searchResult = await plantbook.SearchAsync("pancake");
 
 Console.WriteLine(searchResult.Results[0].DisplayPid);
@@ -25,7 +25,7 @@ Console.WriteLine(searchResult.Results[0].DisplayPid);
 Get more info about a plant:
 
 ```C#
-var plantbook = new PlantBook(new("auth cliend id", "auth secret"));
+var plantbook = new PlantBook(new("auth client id", "auth secret"));
 var plant = await plantbook.GetAsync("pilea peperomioides");
 
 Console.WriteLine(plant.Alias);
